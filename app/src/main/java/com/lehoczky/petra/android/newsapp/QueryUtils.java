@@ -18,6 +18,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.src;
+
 /**
  * Helper methods related to requesting and receiving news data from Guardian API.
  */
@@ -170,6 +172,16 @@ public final class QueryUtils {
                 // Extract the value for the key called "webTitle"
                 String webTitle = currentNews.getString("webTitle");
 
+                // Check if the item contain an author field (NOTE : in the URL tested, there is NEVER this field)
+                String author = null;
+                if (currentNews.has("author"))
+                    author = currentNews.getString("author");
+
+                // The same here
+                String publishDate = null;
+                if (currentNews.has("publishDate"))
+                    publishDate = currentNews.getString("publishDate");
+
                 // Extract the value for the key called "sectionName"
                 String sectionName = currentNews.getString("sectionName");
 
@@ -179,7 +191,13 @@ public final class QueryUtils {
 
                 // Create a new {@link News} object with the title and the section
                 // and url from the JSON response.
-                news.add(new News(webTitle, sectionName, webUrl));
+
+                // Use the full parameters constructor if needed
+                if(author != null && author.length() > 0 && publishDate != null && publishDate.length() > 0 ){
+                    news.add(new News(webTitle, sectionName, webUrl, author, publishDate));
+                } else { // Else use the simple ocnstructor with less parameters
+                    news.add(new News(webTitle, sectionName, webUrl));
+                }
             }
 
         } catch (JSONException e) {

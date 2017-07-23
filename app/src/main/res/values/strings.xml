@@ -7,4 +7,8 @@
     <string name="search_hint">Please enter any keywords here.</string>
     <!-- Error message when there is no browser found. -->
     <string name="error_no_browser">No browsers found.</string>
+    <!-- Author -->
+    <string name="author">Author name</string>
+    <!-- Publish Date -->
+    <string name="publish_date">Publish Date</string>
 </resources>

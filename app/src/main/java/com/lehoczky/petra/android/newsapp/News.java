@@ -17,6 +17,10 @@ public class News {
      */
     private String mUrl;
 
+    private String mAuthor;
+    private String mPublishDate;
+
+
     /**
      * Constructs a new {@link News} object.
      *
@@ -29,6 +33,14 @@ public class News {
         mTitle = title;
         mSectionsName = sectionsName;
         mUrl = sectionsUrl;
+    }
+
+    public News(String mTitle, String mSectionsName, String mUrl, String mAuthor, String mPublishDate) {
+        this.mTitle = mTitle;
+        this.mSectionsName = mSectionsName;
+        this.mUrl = mUrl;
+        this.mAuthor = mAuthor;
+        this.mPublishDate = mPublishDate;
     }
 
     /**
